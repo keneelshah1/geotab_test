@@ -1,5 +1,7 @@
 # Geotab Development Assessment
 
+# I have completed this assessment in Java
+
 As part of your application to Geotab Inc., we ask that you complete the following challenge. 
 
 To submit the your challenge please follow the steps below:
