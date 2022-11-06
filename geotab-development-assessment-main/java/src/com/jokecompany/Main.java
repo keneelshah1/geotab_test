@@ -25,61 +25,62 @@ public class Main {
                 printer.Value("Press c to get categories").toString();
                 printer.Value("Press r to get random jokes").toString();
                 printer.Value("Press q to quit").toString(); //added to quit
-//                getEnteredKey(c.readLine());
                 key = c.readLine().charAt(0);		//better way to get char
                 
-                if (key == 'q') //added to quit out of loop
+                if (key == 'q') // Quit the application
                 {
                     printer.Value("See you Soon!").toString();
                     break;
                 }
                 
-                if (key == 'c')
+                if (key == 'c')	// Display Categories
                 {
                     getCategories();
                     PrintResults();
                 }
-                if (key == 'r')
+                
+                if (key == 'r') // Get Jokes
                 {
                     printer.Value("Want to use a random name? y/n").toString();
-//                    getEnteredKey(c.readLine());
                     key = c.readLine().charAt(0);		//better way to get char
 
-                    if (key == 'y')
+                    if (key == 'y')	// Get Random Names
                     {
-                    	rndmName = 1;
+                    	rndmName = 1;	//setting flag as True
                         getNames();
                     }
                     else if (key == 'n')
                     	rndmName = 0;
                     
                     printer.Value("Want to specify a category? y/n").toString();
-//                    getEnteredKey(c.readLine()); //added this line
                     key = c.readLine().charAt(0);		//better way to get char
 
-                    if (key == 'y')	//for category
+                    if (key == 'y')	//for specific category
                     {
-                    	printer.Value("The Categories are as follows").toString();//added this line
-                        getCategories();											//this too
-                        PrintResults();												//and this
+                    	printer.Value("The Categories are as follows").toString(); //Displaying categories for the ease of users
+                        getCategories();											
+                        PrintResults();												//printing categories
+                        
+                        // Taking categories
                         printer.Value("Enter a category:").toString();
                         String category = c.readLine();
+                        
                         
                         printer.Value("How many jokes do you want? (1-9)").toString();
                         int n = Integer.parseInt(c.readLine());
                         
-                        for (int i = 0; i < n; i++) //for loop
+                        for (int i = 0; i < n; i++) //for loop to get n number of jokes
                     	{
 	                        getRandomJokes(category, rndmName);
 	                        PrintResults();
                     	}
-                        Main.names.entrySet().clear();
+                        Main.names.entrySet().clear();	// clearing Hash map after execution
                     }
                     else	//random category
                     {
                         printer.Value("How many jokes do you want? (1-9)").toString();
                         int n = Integer.parseInt(c.readLine());
-                        for (int i = 0; i < n; i++) //for loop
+                        for (int i = 0; i < n; i++) //for loop to get n number of jokes
                     	{
                         	getRandomJokes(null, rndmName);
                         	PrintResults();
@@ -97,56 +98,15 @@ public class Main {
         printer.Value("[" + String.join(",", results) + "]").toString();
     }
 
-    //no need to use
-//    private static void getEnteredKey(String k) {
-//        switch (k.substring(0,1))
-//        {
-//            case "c":
-//                key = 'c';
-//                break;
-//            case "0" :
-//                key = '0';
-//                break;
-//            case "1":
-//                key = '1';
-//                break;
-//            case "3":
-//                key = '3';
-//                break;
-//            case "4":
-//                key = '4';
-//                break;
-//            case "5":
-//                key = '5';
-//                break;
-//            case "6":
-//                key = '6';
-//                break;
-//            case "7":
-//                key = '7';
-//                break;
-//            case "8":
-//                key = '8';
-//                break;
-//            case "9":
-//                key = '9';
-//                break;
-//            case "r":
-//                key = 'r';
-//                break;
-//            case "y":
-//                key = 'y';
-//                break;
-//        }
-//    }
 
     private static void getRandomJokes(String category, int number) throws InterruptedException, IOException, URISyntaxException {
     	//added if else
     	new JsonFeed("https://api.chucknorris.io/jokes/", number);
-	    	if(number == 0) {
+	    	if(number == 0) // get jokes without random name
+	    	{
 	    			results = JsonFeed.getRandomJokes(null, null, category);
 	    	}
-	    	else 
+	    	else //get joke with random name
 	    	{
 	        	var var1 = Main.names.entrySet().iterator().next();
 	            results = JsonFeed.getRandomJokes(var1.getKey(), var1.getValue(), category);
@@ -159,10 +119,10 @@ public class Main {
     }
 
     private static void getNames() throws InterruptedException, IOException, URISyntaxException {
-    	new JsonFeed("https://api.namefake.com/english-united-states/male/", 0); // wrong domain name please check the api
+    	new JsonFeed("https://api.namefake.com/english-united-states/male/", 0); // Given API url was wrong so changed the API
         Dto dto = JsonFeed.getnames();
         try {
-        	Main.names.put(dto.getName(), dto.getSurname());
+        	Main.names.put(dto.getName(), dto.getSurname()); // adding names to Hash Map
         }
         catch(Exception e)
         {

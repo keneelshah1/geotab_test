@@ -4,7 +4,7 @@ public class Dto {
     private String name , surname;
 
     public Dto(String name) {
-    	String[] splitted = name.split("\\s+");
+    	String[] splitted = name.split("\\s+");	// splitting the first and last name
     	this.name = splitted[0];
         this.surname = splitted[1];
     }

@@ -21,20 +21,19 @@ public class JsonFeed {
         String temp_url= url;
         url += "random/";
         if (category != null)
-            url += "?category="+category; //this line
+            url += "?category="+category; // Added category query as per API document
         URI uri = new URI(url);
         HttpRequest request = HttpRequest.newBuilder().uri(uri).build();
         String joke = client.send(request, HttpResponse.BodyHandlers.ofString()).body();
         
-        //trying to separate joke
+        //separating joke from the API result
         int indx = joke.indexOf(",\"value\":");
         String jke = joke.substring(indx + 9);
         joke = jke;
         
-//        System.out.println(jke);
-        
-        if (firstname != null && lastname != null)
+        if (firstname != null && lastname != null) // if random name given
         {
+        	//substuting the random name inplace of 'Chuck Norris'
             int index = joke.indexOf("Chuck Norris");
             String firstPart = joke.substring(0, index);
             String secondPart = joke.substring(index + "Chuck Norris".length());
@@ -51,17 +50,17 @@ public class JsonFeed {
         HttpRequest request = HttpRequest.newBuilder().uri(uri).build();
         String names = client.send(request, HttpResponse.BodyHandlers.ofString()).body();
         
-        
+        // Splitting the Name from the API result
         int name_index = names.indexOf("\"name\":\"");
         int end_index = names.indexOf("\",\"address\":");
         String name = names.substring(name_index+8,end_index);
-        Dto dto = new Dto(name);
+        Dto dto = new Dto(name); // Storiong the name in DTO
         return dto;
     }
 
     public static String[] getCategories() throws IOException, InterruptedException, URISyntaxException {
         HttpClient client = HttpClient.newHttpClient();
-        url += "categories/";	//this line to get categories
+        url += "categories/";	//added "catrgories/" to the end of the URL to fetch the categories
         URI uri = new URI(url);
         HttpRequest request = HttpRequest.newBuilder().uri(uri).build();
         String responsebody = client.send(request, HttpResponse.BodyHandlers.ofString()).body();
