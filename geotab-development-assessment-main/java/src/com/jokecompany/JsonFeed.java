@@ -23,6 +23,7 @@ public class JsonFeed {
         if (category != null)
             url += "?category="+category; // Added category query as per API document
         URI uri = new URI(url);
+        
         HttpRequest request = HttpRequest.newBuilder().uri(uri).build();
         String joke = client.send(request, HttpResponse.BodyHandlers.ofString()).body();
         
@@ -54,14 +55,15 @@ public class JsonFeed {
         int name_index = names.indexOf("\"name\":\"");
         int end_index = names.indexOf("\",\"address\":");
         String name = names.substring(name_index+8,end_index);
-        Dto dto = new Dto(name); // Storiong the name in DTO
+        Dto dto = new Dto(name); // Storing the name in DTO
         return dto;
     }
 
     public static String[] getCategories() throws IOException, InterruptedException, URISyntaxException {
         HttpClient client = HttpClient.newHttpClient();
-        url += "categories/";	//added "catrgories/" to the end of the URL to fetch the categories
+        url += "categories/";	//added "categories/" to the end of the URL to fetch the categories
         URI uri = new URI(url);
+        
         HttpRequest request = HttpRequest.newBuilder().uri(uri).build();
         String responsebody = client.send(request, HttpResponse.BodyHandlers.ofString()).body();
         return new String[] {new Gson().toJson(responsebody)};
