@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "5Qc0QN7SL6TN29T3S2ojuV4BlcISlzx5mMnTosWTZeFtO36mP7/IUAxhW/zywnkYpLTHnl2xAP7N9OqZFOu6ug==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\dhruv\\Desktop\\geotab-development-assessment-main\\c-sharp\\ConsoleApp1\\JokeGenerator.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\dhruv\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\dhruv\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512",
+    "C:\\Users\\dhruv\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\dhruv\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\dhruv\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
